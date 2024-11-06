@@ -1,0 +1,215 @@
+:root {
+    /* Dark mode (default) */
+    --bg-color: #1D3E53;
+    --calc-bg: #38686A;
+    --display-bg: #7CA5B8;
+    --btn-bg: #C2D3DA;
+    --btn-color: #1D3E53;
+    --btn-hover: #F0F4F7;
+    --operator-bg: #7CA5B8;
+    --operator-hover: #38686A;
+    --equals-bg: #1D3E53;
+    --equals-hover: #2C5F7C;
+    --text-color: #F0F4F7;
+    --display-text: #F0F4F7;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+.calculator {
+    background-color: var(--calc-bg);
+    border-radius: 20px;
+    padding: 25px;
+    width: 320px;
+    
+    
+}
+
+.display {
+    background-color: var(--display-bg);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.display::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 50%,
+        transparent 100%
+    );
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+
+#result {
+    width: 100%;
+    height: 50px;
+    font-size: 28px;
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    color: var(--display-text);
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    color: var(--btn-color);
+    font-weight: bolder;
+}
+
+.number {
+    background-color: var(--btn-bg);
+}
+
+.number:hover {
+    background-color: var(--btn-hover);
+    
+}
+
+.operator {
+    background-color: var(--operator-bg);
+}
+
+.operator:hover {
+    background-color: var(--operator-hover);
+    
+}#clear{
+    grid-column: span 2;
+}
+
+#calculate {
+    grid-column: span 4;
+}
+
+#clear {
+    background-color: var(--btn-bg);
+}
+
+#clear:hover {
+    background-color: var(--btn-hover);
+    
+}
+
+#calculate {
+    background-color: var(--equals-bg);
+    color: #C2D3DA;
+}
+
+#calculate:hover {
+    background-color: var(--equals-hover);
+    
+}
+
+/* Animation for button press */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+button:active {
+    animation: buttonPress 0.1s ease-in-out;
+}
+
+/* Theme switch styles */
+.theme-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+.slider {
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform var(--transition-speed) ease;
+}
+
+#theme-toggle:checked + .slider {
+    background-color: #2196F3;
+}
+
+#theme-toggle:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Light mode styles */
+body.light-mode {
+    /* Light mode */
+    --bg-color: #F0F4F7;
+    --calc-bg: #C2D3DA;
+    --display-bg: #7CA5B8;
+    --btn-bg: #38686A;
+    --btn-color: #F0F4F7;
+    --btn-hover: #7CA5B8;
+    --operator-bg: #1D3E53;
+    --operator-hover: #2C5F7C;
+    --equals-bg: #7CA5B8;
+    --equals-hover: #38686A;
+    --text-color: #1D3E53;
+    --display-text: #F0F4F7;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        width: 90%;
+        padding: 20px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
